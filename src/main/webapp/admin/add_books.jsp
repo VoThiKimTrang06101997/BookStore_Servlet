@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page isELIgnored="false" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +19,19 @@
 				<div class="card">
 					<div class="card-body">
 						<h4 class="text-center text-danger">Add Books</h4>
-						<form action="../AdminAddBookServlet" method="post">
+						
+							<c:if test="${not empty successMessage }">
+								<p class="text-center text-success">${successMessage }</p>
+								<c:remove var="successMessage" scope="session"/>
+							</c:if>
+							
+							<c:if test="${not empty failedMessage }">
+								<p class="text-center text-danger">${failedMessage }</p>
+								<c:remove var="failedMessage" scope="session"/>
+							</c:if>
+							
+							
+						<form action="../add_books" method="post" enctype="multipart/form-data">
 							<div class="form-group">
 								<label for="exampleInputEmail1">Book Name*</label> <input
 									type="text" class="form-control" id="exampleInputEmail1"

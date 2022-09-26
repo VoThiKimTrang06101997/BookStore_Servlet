@@ -17,5 +17,18 @@ create table if not exists user (
     primary key(id)
 );
 
+create table if not exists book_admin (
+	bookId int auto_increment not null,
+    bookname varchar(255) null,
+    author varchar(255) null,
+    price double null,
+    bookCategory varchar(255) null,
+    status varchar(255) null,
+    photo varchar(255) null,
+    primary key (bookId)
+);
+
+
+
 
 

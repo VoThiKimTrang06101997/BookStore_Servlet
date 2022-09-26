@@ -30,11 +30,9 @@
 		<h2 class="text-center text-success">Ebook Management System</h2>
 	</div>
 	
+	<% Connection connection = DBConnect.getConnection(); %>
 	
-	
-	<!-- <% Connection connection = DBConnect.getConnection();
-		out.println(connection); %>
-	-->
+	<!-- out.println(connection); -->
 	
 	<!-- Start Recent Book -->
 	<div class="container">
