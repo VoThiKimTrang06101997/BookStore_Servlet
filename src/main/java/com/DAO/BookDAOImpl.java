@@ -74,4 +74,86 @@ public class BookDAOImpl implements BookDAO{
 		return listBookAdmin;
 	}
 
+	@Override
+	public BookAdmin getBookById(int id) {
+		BookAdmin bookAdmin = null;
+		
+		try {
+			String query = "SELECT * FROM book_admin WHERE bookId=?";
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			
+			preparedStatement.setInt(1, id);
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				bookAdmin = new BookAdmin();
+				
+				bookAdmin.setBookId(resultSet.getInt(1));
+				bookAdmin.setBookName(resultSet.getString(2));
+				bookAdmin.setAuthor(resultSet.getString(3));
+				bookAdmin.setPrice(resultSet.getString(4));
+				bookAdmin.setBookCategory(resultSet.getString(5));
+				bookAdmin.setStatus(resultSet.getString(6));
+				bookAdmin.setPhoto(resultSet.getString(7));
+				bookAdmin.setUserEmail(resultSet.getString(8));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bookAdmin;
+	}
+
+	@Override
+	public boolean updateEditBooks(BookAdmin bookAdmin) {
+		boolean f = false;
+		
+		try {
+			String query = "UPDATE book_admin SET bookname=?, author=?, price=?, status=?, photo=? WHERE bookId=?";
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			
+			preparedStatement.setString(1, bookAdmin.getBookName());
+			preparedStatement.setString(2, bookAdmin.getAuthor());
+			preparedStatement.setString(3, bookAdmin.getPrice());
+			preparedStatement.setString(4, bookAdmin.getStatus());
+			preparedStatement.setString(5, bookAdmin.getPhoto());
+			preparedStatement.setInt(6, bookAdmin.getBookId());
+			
+			int i = preparedStatement.executeUpdate();
+			
+			if(i==1) {
+				f = true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return f;
+	}
+
+	@Override
+	public boolean deleteBooks(int id) {
+		boolean f = false;
+		
+		try {
+			String query = "DELETE FROM book_admin WHERE bookId=?";
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			
+			preparedStatement.setInt(1, id);
+			
+			int i = preparedStatement.executeUpdate();
+			
+			if(i == 1) {
+				f = true;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return f;
+	}
+
+
+
+
 }

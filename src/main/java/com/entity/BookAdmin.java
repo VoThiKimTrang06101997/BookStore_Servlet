@@ -24,10 +24,12 @@ public class BookAdmin {
 		this.userEmail = userEmail;
 	}
 
+
+
 	public BookAdmin() {
-		super();
 		// TODO Auto-generated constructor stub
 	}
+
 
 	/* Getter and Setter */
 	public int getBookId() {
