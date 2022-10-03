@@ -1,3 +1,6 @@
+<%@page import="com.entity.BookAdmin"%>
+<%@page import="java.util.List"%>
+<%@page import="com.DAO.BookDAOImpl"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="com.DB.DBConnect"%>
 
@@ -36,263 +39,174 @@
 	
 	<!-- Start Recent Book -->
 	<div class="container">
-		<h3 class="text-center">Recent Book</h3>
+		<h3 class="text-center text-danger">Recent Book</h3>
+
 		<div class="row">
-			<div class="col-md-3">
-				<div class="card crd-ho">
-					<div class="card-body text-center">
-						<img alt="" src="book_img/java.jpg"
-							style="width: 150px; height: 200px" class="img-thumblin">
-						<p>Java Programming</p>
-						<p>Surbhi Kakar</p>
-						<p>Categories: New</p>
-						<div class="row">
-							<a href="" class="btn btn-danger btn-sm ml-2">
-							<i class="fas fa-cart-plus"></i> Add Cart</a> 
-							<a href=""
-								class="btn btn-success btn-sm ml-1">View Details</a> 
-							<a href=""
-								class="btn btn-danger btn-sm ml-1">299</a>
-						</div>
-					</div>
-				</div>
-			</div>
+			<%
+			BookDAOImpl daoImpl = new BookDAOImpl(DBConnect.getConnection());
+			List<BookAdmin> list = daoImpl.getRecentBooks();
 
-			<div class="col-md-3">
+			for (BookAdmin admin : list) {
+			%>
+			<div class="col-md-4 mt-3">
 				<div class="card crd-ho">
 					<div class="card-body text-center">
-						<img alt="" src="book_img/java.jpg"
+						<img alt="" src="book_img/<%=admin.getPhoto()%>"
 							style="width: 150px; height: 200px" class="img-thumblin">
-						<p>Java Programming</p>
-						<p>Surbhi Kakar</p>
-						<p>Categories: New</p>
-						<div class="row">
-							<a href="" class="btn btn-danger btn-sm ml-2">
-							<i class="fas fa-cart-plus"></i> Add Cart</a> 
-							<a href=""
-								class="btn btn-success btn-sm ml-1">View Details</a> 
-							<a href=""
-								class="btn btn-danger btn-sm ml-1">299</a>
-						</div>
-					</div>
-				</div>
-			</div>
+						<p class="text-danger"><%=admin.getBookName()%></p>
+						<p class="text-success"><%=admin.getAuthor()%></p>
 
-			<div class="col-md-3">
-				<div class="card crd-ho">
-					<div class="card-body text-center">
-						<img alt="" src="book_img/java.jpg"
-							style="width: 150px; height: 200px" class="img-thumblin">
-						<p>Java Programming</p>
-						<p>Surbhi Kakar</p>
-						<p>Categories: New</p>
-						<div class="row">
-							<a href="" class="btn btn-danger btn-sm ml-2">
-							<i class="fas fa-cart-plus"></i> Add Cart</a> 
-							<a href=""
-								class="btn btn-success btn-sm ml-1">View Details</a> 
-							<a href=""
-								class="btn btn-danger btn-sm ml-1">299</a>
+						<%
+						if (admin.getBookCategory().equals("Old")) {
+						%>
+						<p class="text-primary">
+							Categories:
+							<%=admin.getBookCategory()%></p>
+						<div class="row ml-4">
+							<a href="" class="btn btn-success btn-sm ml-5">View Details</a>
+							<a href="" class="btn btn-danger btn-sm ml-1"><%=admin.getPrice()%>
+								<i class="fas fa-dollar-sign"></i></a>
 						</div>
+						<%
+						} else {
+						%>
+						<p class="text-primary">
+							Categories:
+							<%=admin.getBookCategory()%></p>
+						<div class="row ml-4">
+							<a href="" class="btn btn-danger btn-sm ml-2"> <i
+								class="fas fa-cart-plus"></i> Add Cart
+							</a> <a href="" class="btn btn-success btn-sm ml-1">View Details</a>
+							<a href="" class="btn btn-danger btn-sm ml-1"><%=admin.getPrice()%>
+								<i class="fas fa-dollar-sign"></i></a>
+						</div>
+						<%
+						}
+						%>
 					</div>
 				</div>
 			</div>
-
-			<div class="col-md-3">
-				<div class="card crd-ho">
-					<div class="card-body text-center">
-						<img alt="" src="book_img/java.jpg"
-							style="width: 150px; height: 200px" class="img-thumblin">
-						<p>Java Programming</p>
-						<p>Surbhi Kakar</p>
-						<p>Categories: New</p>
-						<div class="row">
-							<a href="" class="btn btn-danger btn-sm ml-2">
-							<i class="fas fa-cart-plus"></i> Add Cart</a> 
-							<a href=""
-								class="btn btn-success btn-sm ml-1">View Details</a> 
-							<a href=""
-								class="btn btn-danger btn-sm ml-1">299</a>
-						</div>
-					</div>
-				</div>
-			</div>
+			<%
+			}
+			%>
 		</div>
 
-		<div class="text-center mt-2">
-			<a href="" class="btn btn-danger btn-sm text-white">View All</a>
-		</div>
-		
+	</div>
+
+	<div class="text-center mt-2">
+		<a href="" class="btn btn-warning btn-sm text-white">View All</a>
+	</div>
+
 	</div>
 	<!-- End Recent Book -->
 	
 	<hr/>
 	
 	<!-- Start New Book -->
-		<div class="container">
-		<h3 class="text-center">New Book</h3>
+	<div class="container">
+		<h3 class="text-center text-danger">New Book</h3>
 		<div class="row">
-			<div class="col-md-3">
-				<div class="card crd-ho">
-					<div class="card-body text-center">
-						<img alt="" src="book_img/java.jpg"
-							style="width: 150px; height: 200px" class="img-thumblin">
-						<p>Java Programming</p>
-						<p>Surbhi Kakar</p>
-						<p>Categories: New</p>
-						<div class="row">
-							<a href="" class="btn btn-danger btn-sm ml-2">
-							<i class="fas fa-cart-plus"></i> Add Cart</a> 
-							<a href=""
-								class="btn btn-success btn-sm ml-1">View Details</a> 
-							<a href=""
-								class="btn btn-danger btn-sm ml-1">299</a>
-						</div>
-					</div>
-				</div>
-			</div>
+			<%
+			BookDAOImpl bookDAOImpl = new BookDAOImpl(DBConnect.getConnection());
+			List<BookAdmin> listBooks = bookDAOImpl.getNewBooks();
 
-			<div class="col-md-3">
+			for (BookAdmin bookAdmin : listBooks) {
+			%>
+			<div class="col-md-4 mt-3">
 				<div class="card crd-ho">
 					<div class="card-body text-center">
-						<img alt="" src="book_img/java.jpg"
+						<img alt="" src="book_img/<%=bookAdmin.getPhoto()%>"
 							style="width: 150px; height: 200px" class="img-thumblin">
-						<p>Java Programming</p>
-						<p>Surbhi Kakar</p>
-						<p>Categories: New</p>
-						<div class="row">
-							<a href="" class="btn btn-danger btn-sm ml-2">
-							<i class="fas fa-cart-plus"></i> Add Cart</a> 
-							<a href=""
-								class="btn btn-success btn-sm ml-1">View Details</a> 
-							<a href=""
-								class="btn btn-danger btn-sm ml-1">299</a>
+						<p class="text-danger"><%=bookAdmin.getBookName()%></p>
+						<p class="text-success"><%=bookAdmin.getAuthor()%></p>
+						
+						<p class="text-primary">
+							Categories:
+							<%=bookAdmin.getBookCategory()%></p>
+						<div class="row ml-4">
+							<a href="" class="btn btn-danger btn-sm ml-2"> <i
+								class="fas fa-cart-plus"></i> Add Cart
+							</a> <a href="" class="btn btn-success btn-sm ml-1">View Details</a>
+							<a href="" class="btn btn-danger btn-sm ml-1"><%=bookAdmin.getPrice()%>
+								<i class="fas fa-dollar-sign"></i></a>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<div class="col-md-3">
-				<div class="card crd-ho">
-					<div class="card-body text-center">
-						<img alt="" src="book_img/java.jpg"
-							style="width: 150px; height: 200px" class="img-thumblin">
-						<p>Java Programming</p>
-						<p>Surbhi Kakar</p>
-						<p>Categories: New</p>
-						<div class="row">
-							<a href="" class="btn btn-danger btn-sm ml-2">
-							<i class="fas fa-cart-plus"></i> Add Cart</a> 
-							<a href=""
-								class="btn btn-success btn-sm ml-1">View Details</a> 
-							<a href=""
-								class="btn btn-danger btn-sm ml-1">299</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-3">
-				<div class="card crd-ho">
-					<div class="card-body text-center">
-						<img alt="" src="book_img/java.jpg"
-							style="width: 150px; height: 200px" class="img-thumblin">
-						<p>Java Programming</p>
-						<p>Surbhi Kakar</p>
-						<p>Categories: New</p>
-						<div class="row">
-							<a href="" class="btn btn-danger btn-sm ml-2">
-							<i class="fas fa-cart-plus"></i> Add Cart</a> 
-							<a href=""
-								class="btn btn-success btn-sm ml-1">View Details</a> 
-							<a href=""
-								class="btn btn-danger btn-sm ml-1">299</a>
-						</div>
-					</div>
-				</div>
-			</div>
+			<%
+			}
+			%>
 		</div>
 
 		<div class="text-center mt-2">
-			<a href="" class="btn btn-danger btn-sm text-white">View All</a>
+			<a href="" class="btn btn-warning btn-sm text-white">View All</a>
 		</div>
-		
+
 	</div>
+	
 	<!-- End New Book -->
 	
 	<hr/>
 	
 	<!-- Start Old Book -->
 		<div class="container">
-		<h3 class="text-center">Old Book</h3>
+		<h3 class="text-center text-danger">Old Book</h3>
+
 		<div class="row">
-			<div class="col-md-3">
-				<div class="card crd-ho">
-					<div class="card-body text-center">
-						<img alt="" src="book_img/java.jpg"
-							style="width: 150px; height: 200px" class="img-thumblin">
-						<p>Java Programming</p>
-						<p>Surbhi Kakar</p>
-						<p>Categories: Old</p>
-						<div class="row">
-							<a href="" class="btn btn-success btn-sm ml-5">View Details</a>
-							<a href="" class="btn btn-danger btn-sm ml-1">$299</a>
-						</div>
-					</div>
-				</div>
-			</div>
+			<%
+			BookDAOImpl bookDAOImpl2 = new BookDAOImpl(DBConnect.getConnection());
+			List<BookAdmin> listBookAdmins = bookDAOImpl2.getOldBooks();
 
-			<div class="col-md-3">
+			for (BookAdmin bookAdmin : listBookAdmins) {
+			%>
+			<div class="col-md-4 mt-3">
 				<div class="card crd-ho">
 					<div class="card-body text-center">
-						<img alt="" src="book_img/java.jpg"
+						<img alt="" src="book_img/<%=bookAdmin.getPhoto()%>"
 							style="width: 150px; height: 200px" class="img-thumblin">
-						<p>Java Programming</p>
-						<p>Surbhi Kakar</p>
-						<p>Categories: New</p>
-						<div class="row">
+						<p class="text-danger"><%=bookAdmin.getBookName()%></p>
+						<p class="text-success"><%=bookAdmin.getAuthor()%></p>
+						
+						
+						<%
+						if (bookAdmin.getBookCategory().equals("Old")) {
+						%>
+						<p class="text-primary">
+							Categories:
+							<%=bookAdmin.getBookCategory()%></p>
+						<div class="row ml-4">
 							<a href="" class="btn btn-success btn-sm ml-5">View Details</a>
-							<a href="" class="btn btn-danger btn-sm ml-1">$299</a>
+							<a href="" class="btn btn-danger btn-sm ml-1"><%=bookAdmin.getPrice()%>
+								<i class="fas fa-dollar-sign"></i></a>
 						</div>
+						<%
+						} else {
+						%>
+						<p class="text-primary">
+							Categories:
+							<%=bookAdmin.getBookCategory()%></p>
+						<div class="row ml-4">
+							<a href="" class="btn btn-danger btn-sm ml-2"> <i
+								class="fas fa-cart-plus"></i> Add Cart
+							</a> <a href="" class="btn btn-success btn-sm ml-1">View Details</a>
+							<a href="" class="btn btn-danger btn-sm ml-1"><%=bookAdmin.getPrice()%>
+								<i class="fas fa-dollar-sign"></i></a>
+						</div>
+						<%
+						}
+						%>
+							
 					</div>
 				</div>
 			</div>
-
-			<div class="col-md-3">
-				<div class="card crd-ho">
-					<div class="card-body text-center">
-						<img alt="" src="book_img/java.jpg"
-							style="width: 150px; height: 200px" class="img-thumblin">
-						<p>Java Programming</p>
-						<p>Surbhi Kakar</p>
-						<p>Categories: New</p>
-						<div class="row">
-							<a href="" class="btn btn-success btn-sm ml-5">View Details</a>
-							<a href="" class="btn btn-danger btn-sm ml-1">$299</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-3">
-				<div class="card crd-ho">
-					<div class="card-body text-center">
-						<img alt="" src="book_img/java.jpg"
-							style="width: 150px; height: 200px" class="img-thumblin">
-						<p>Java Programming</p>
-						<p>Surbhi Kakar</p>
-						<p>Categories: New</p>
-						<div class="row">
-							<a href="" class="btn btn-success btn-sm ml-1">View Details</a>
-							<a href="" class="btn btn-danger btn-sm ml-1">$299</a>
-						</div>
-					</div>
-				</div>
-			</div>
+			<%
+			}
+			%>
 		</div>
 
+
 		<div class="text-center mt-2">
-			<a href="" class="btn btn-danger btn-sm text-white">View All</a>
+			<a href="" class="btn btn-warning btn-sm text-white">View All</a>
 		</div>
 		
 	</div>

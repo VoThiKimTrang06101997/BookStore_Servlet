@@ -13,6 +13,10 @@
 <body style="background-color: #f0f1f2">
 	<%@include file="navbar.jsp"%>
 	
+	<c:if test="${empty UserObjective }">
+		<c:redirect url="../login.jsp" />
+	</c:if>
+	
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 offset-md-4">
@@ -59,6 +63,7 @@
 									class="form-control" id="inputStatus" name="book_categories">
 									<option selected>--Select--</option>
 									<option value="New">New Book</option>	
+									<option value="Old">Old Book</option>	
 								</select>
 							</div>
 							

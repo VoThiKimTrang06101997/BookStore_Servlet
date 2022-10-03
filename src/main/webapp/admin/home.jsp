@@ -24,8 +24,15 @@ a:hover {
 </style>
 
 </head>
-<body>
+<body style="background-color: #f0f1f2">
 <%@include file="navbar.jsp"%>
+
+	<c:if test="${empty UserObjective }">
+		<c:redirect url="../login.jsp" />
+	</c:if>
+	
+	
+	
 	<div class="container">
 		<div class="row p-5">
 			<div class="col-md-3">
@@ -65,13 +72,16 @@ a:hover {
 			</div>
 
 			<div class="col-md-3">
-				<div class="card">
-					<div class="card-body text-center">
-						<i class="fas fa-sign-out-alt fa-3x text-primary"></i> <br/>
-						<h4>Logout</h4>
-						------------------
+				<a href="" data-toggle="modal" data-target="#exampleModalCenter">
+					<div class="card">
+						<div class="card-body text-center">
+							<i class="fas fa-sign-out-alt fa-3x text-primary"></i> <br />
+							<h4>Logout</h4>
+							------------------
+						</div>
 					</div>
-				</div>
+				</a>
+
 			</div>
 			
 		</div>

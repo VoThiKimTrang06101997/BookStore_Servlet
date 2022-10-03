@@ -14,4 +14,10 @@ public interface BookDAO {
 	public boolean updateEditBooks(BookAdmin bookAdmin);
 
 	public boolean deleteBooks(int id);
+	
+	public List<BookAdmin> getNewBooks();
+	
+	public List<BookAdmin> getRecentBooks();
+	
+	public List<BookAdmin> getOldBooks();
 }
