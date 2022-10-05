@@ -41,15 +41,15 @@
 					Home <span class="sr-only">(current)</span>
 			</a></li>
 
-			<li class="nav-item active"><a class="nav-link" href="#"> <i
+			<li class="nav-item active"><a class="nav-link" href="all_recent_books.jsp"> <i
 					class="fas fa-book-open"></i> Recent Book
 			</a></li>
 
-			<li class="nav-item active"><a class="nav-link" href="#"> <i
+			<li class="nav-item active"><a class="nav-link" href="all_new_books.jsp"> <i
 					class="fas fa-book-open"></i> New Book
 			</a></li>
 
-			<li class="nav-item active"><a class="nav-link" href="#"> <i
+			<li class="nav-item active"><a class="nav-link" href="all_old_books.jsp"> <i
 					class="fas fa-book-open"></i> Old Book
 			</a></li>
 

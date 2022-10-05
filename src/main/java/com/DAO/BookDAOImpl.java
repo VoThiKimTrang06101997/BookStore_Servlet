@@ -169,7 +169,7 @@ public class BookDAOImpl implements BookDAO{
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
 			int i = 1;
-			while(resultSet.next() && i <=7) {
+			while(resultSet.next() && i <= 4) {
 				bookAdmin = new BookAdmin();
 				
 				bookAdmin.setBookId(resultSet.getInt(1));
@@ -189,9 +189,7 @@ public class BookDAOImpl implements BookDAO{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
+
 		return listBooks;
 	}
 
@@ -210,7 +208,7 @@ public class BookDAOImpl implements BookDAO{
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
 			int i = 1;
-			while(resultSet.next() && i <=7) {
+			while(resultSet.next() && i <= 4) {
 				bookAdmin = new BookAdmin();
 				
 				bookAdmin.setBookId(resultSet.getInt(1));
@@ -249,7 +247,7 @@ public class BookDAOImpl implements BookDAO{
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
 			int i = 1;
-			while(resultSet.next() && i <=7) {
+			while(resultSet.next() && i <= 4) {
 				bookAdmin = new BookAdmin();
 				
 				bookAdmin.setBookId(resultSet.getInt(1));
@@ -266,6 +264,115 @@ public class BookDAOImpl implements BookDAO{
 			}
 			
 			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return listBooks;
+	}
+
+	@Override
+	public List<BookAdmin> getAllRecentBooks() {
+		List<BookAdmin> listBooks = new ArrayList<BookAdmin>();
+		
+		BookAdmin bookAdmin = null;
+		
+		try {
+			String query = "SELECT * FROM book_admin WHERE status = ? ORDER BY bookId DESC";
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			
+			preparedStatement.setString(1, "Active");
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				bookAdmin = new BookAdmin();
+				
+				bookAdmin.setBookId(resultSet.getInt(1));
+				bookAdmin.setBookName(resultSet.getString(2));
+				bookAdmin.setAuthor(resultSet.getString(3));
+				bookAdmin.setPrice(resultSet.getString(4));
+				bookAdmin.setBookCategory(resultSet.getString(5));
+				bookAdmin.setStatus(resultSet.getString(6));
+				bookAdmin.setPhoto(resultSet.getString(7));
+				bookAdmin.setUserEmail(resultSet.getString(8));
+				
+				listBooks.add(bookAdmin);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listBooks;
+	}
+
+	@Override
+	public List<BookAdmin> getAllNewBooks() {
+		List<BookAdmin> listBooks = new ArrayList<BookAdmin>();
+		
+		BookAdmin bookAdmin = null;
+		
+		try {
+			String query = "SELECT * FROM book_admin WHERE bookCategory = ? AND status = ? ORDER BY bookId DESC";
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			
+			preparedStatement.setString(1, "New");
+			preparedStatement.setString(2, "Active");
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				bookAdmin = new BookAdmin();
+				
+				bookAdmin.setBookId(resultSet.getInt(1));
+				bookAdmin.setBookName(resultSet.getString(2));
+				bookAdmin.setAuthor(resultSet.getString(3));
+				bookAdmin.setPrice(resultSet.getString(4));
+				bookAdmin.setBookCategory(resultSet.getString(5));
+				bookAdmin.setStatus(resultSet.getString(6));
+				bookAdmin.setPhoto(resultSet.getString(7));
+				bookAdmin.setUserEmail(resultSet.getString(8));
+				
+				listBooks.add(bookAdmin);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return listBooks;
+	}
+
+	@Override
+	public List<BookAdmin> getAllOldBooks() {
+		List<BookAdmin> listBooks = new ArrayList<BookAdmin>();
+		
+		BookAdmin bookAdmin = null;
+		
+		try {
+			String query = "SELECT * FROM book_admin WHERE bookCategory = ? AND status = ? ORDER BY bookId DESC";
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			
+			preparedStatement.setString(1, "Old");
+			preparedStatement.setString(2, "Active");
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				bookAdmin = new BookAdmin();
+				
+				bookAdmin.setBookId(resultSet.getInt(1));
+				bookAdmin.setBookName(resultSet.getString(2));
+				bookAdmin.setAuthor(resultSet.getString(3));
+				bookAdmin.setPrice(resultSet.getString(4));
+				bookAdmin.setBookCategory(resultSet.getString(5));
+				bookAdmin.setStatus(resultSet.getString(6));
+				bookAdmin.setPhoto(resultSet.getString(7));
+				bookAdmin.setUserEmail(resultSet.getString(8));
+				
+				listBooks.add(bookAdmin);
+			}
+	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -94,7 +94,7 @@
 	</div>
 
 	<div class="text-center mt-2">
-		<a href="" class="btn btn-warning btn-sm text-white">View All</a>
+		<a href="all_recent_books.jsp" class="btn btn-warning btn-sm text-white">View All</a>
 	</div>
 
 	</div>
@@ -139,7 +139,7 @@
 		</div>
 
 		<div class="text-center mt-2">
-			<a href="" class="btn btn-warning btn-sm text-white">View All</a>
+			<a href="all_new_books.jsp" class="btn btn-warning btn-sm text-white">View All</a>
 		</div>
 
 	</div>
@@ -206,7 +206,7 @@
 
 
 		<div class="text-center mt-2">
-			<a href="" class="btn btn-warning btn-sm text-white">View All</a>
+			<a href="all_old_books.jsp" class="btn btn-warning btn-sm text-white">View All</a>
 		</div>
 		
 	</div>
