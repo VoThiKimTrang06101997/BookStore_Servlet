@@ -63,7 +63,7 @@
 							Categories:
 							<%=admin.getBookCategory()%></p>
 						<div class="row ml-4">
-							<a href="" class="btn btn-success btn-sm ml-5">View Details</a>
+							<a href="view_books.jsp?bid=<%=admin.getBookId() %>" class="btn btn-success btn-sm ml-5">View Details</a>
 							<a href="" class="btn btn-danger btn-sm ml-1"><%=admin.getPrice()%>
 								<i class="fas fa-dollar-sign"></i></a>
 						</div>
@@ -74,10 +74,10 @@
 							Categories:
 							<%=admin.getBookCategory()%></p>
 						<div class="row ml-4">
-							<a href="" class="btn btn-danger btn-sm ml-2"> <i
+							<a href="view_books.jsp" class="btn btn-danger btn-sm ml-2"> <i
 								class="fas fa-cart-plus"></i> Add Cart
-							</a> <a href="" class="btn btn-success btn-sm ml-1">View Details</a>
-							<a href="" class="btn btn-danger btn-sm ml-1"><%=admin.getPrice()%>
+							</a> <a href="view_books.jsp?bid=<%=admin.getBookId() %>" class="btn btn-success btn-sm ml-1">View Details</a>
+							<a href="view_books.jsp?bid=<%=admin.getBookId() %>" class="btn btn-danger btn-sm ml-1"><%=admin.getPrice()%>
 								<i class="fas fa-dollar-sign"></i></a>
 						</div>
 						<%
@@ -126,7 +126,7 @@
 						<div class="row ml-4">
 							<a href="" class="btn btn-danger btn-sm ml-2"> <i
 								class="fas fa-cart-plus"></i> Add Cart
-							</a> <a href="" class="btn btn-success btn-sm ml-1">View Details</a>
+							</a> <a href="view_books.jsp?bid=<%=bookAdmin.getBookId() %>" class="btn btn-success btn-sm ml-1">View Details</a>
 							<a href="" class="btn btn-danger btn-sm ml-1"><%=bookAdmin.getPrice()%>
 								<i class="fas fa-dollar-sign"></i></a>
 						</div>
@@ -175,7 +175,7 @@
 							Categories:
 							<%=bookAdmin.getBookCategory()%></p>
 						<div class="row ml-4">
-							<a href="" class="btn btn-success btn-sm ml-5">View Details</a>
+							<a href="view_books.jsp?bid=<%=bookAdmin.getBookId() %>" class="btn btn-success btn-sm ml-5">View Details</a>
 							<a href="" class="btn btn-danger btn-sm ml-1"><%=bookAdmin.getPrice()%>
 								<i class="fas fa-dollar-sign"></i></a>
 						</div>
@@ -188,7 +188,7 @@
 						<div class="row ml-4">
 							<a href="" class="btn btn-danger btn-sm ml-2"> <i
 								class="fas fa-cart-plus"></i> Add Cart
-							</a> <a href="" class="btn btn-success btn-sm ml-1">View Details</a>
+							</a> <a href="view_books.jsp?bid=<%=bookAdmin.getBookId() %>" class="btn btn-success btn-sm ml-1">View Details</a>
 							<a href="" class="btn btn-danger btn-sm ml-1"><%=bookAdmin.getPrice()%>
 								<i class="fas fa-dollar-sign"></i></a>
 						</div>
