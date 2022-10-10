@@ -14,9 +14,10 @@
 	<%@include file="all_component/navbar.jsp"%>
 	
 	<%
-		int bid = Integer.parseInt(request.getParameter("bid")) ;
+		int bookId = Integer.parseInt(request.getParameter("bookId")) ;
+		// Integer bid = Integer.valueOf(request.getParameter("bid"));
 		BookDAOImpl bookDAOImpl = new BookDAOImpl(DBConnect.getConnection());
-		BookAdmin bookAdmin = bookDAOImpl.getBookById(bid);
+		BookAdmin bookAdmin = bookDAOImpl.getBookById(bookId);
 	%>
 	
 	<div class="container p-3">

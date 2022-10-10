@@ -28,6 +28,17 @@ create table if not exists book_admin (
     primary key (bookId)
 );
 
+create table if not exists cart(
+	cartId int auto_increment not null,
+    bookId int null,
+    userId int null,
+    bookName varchar(255),
+    author varchar(255),
+    price double null,
+    total_price double null,
+    primary key (cartId)
+);
+
 
 
 

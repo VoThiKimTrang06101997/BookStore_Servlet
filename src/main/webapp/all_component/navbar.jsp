@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page isELIgnored="false" %>
+
 <div class="container-fluid" style="height: 10px; background-color: #ff80ab">
 
 </div>
@@ -16,13 +19,27 @@
 			</form>
 		</div>
 
-		<div class="col-md-3">
-			<a href="login.jsp" class="btn btn-success"> <i
-				class="fas fa-sign-in-alt"></i> Login
-			</a> <a href="register.jsp" class="btn btn-primary"> <i
-				class="fas fa-user-plus"></i> Register
-			</a>
-		</div>
+		<c:if test="${not empty UserObjective}">
+			<div class="col-md-3">
+				<a href="checkout.jsp"> <i class="fas fa-cart-plus fa-2x"></i> Cart</a> 
+				
+				<a href="login.jsp" class="btn btn-success"> <i
+					class="fas fa-user-plus"></i> ${UserObjective.name }</a> 
+					
+				<a href="logout" class="btn btn-primary"><i
+					class="fas fa-sign-in-alt"></i> Logout </a>
+			</div>
+		</c:if>
+
+		<c:if test="${empty UserObjective}">
+			<div class="col-md-3">
+				<a href="login.jsp" class="btn btn-success"> <i
+					class="fas fa-user-plus"></i> Login
+				</a> <a href="register.jsp" class="btn btn-primary"><i
+					class="fas fa-sign-in-alt"></i> Register </a>
+			</div>
+		</c:if>
+
 	</div>
 </div>
 
