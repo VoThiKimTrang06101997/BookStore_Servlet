@@ -28,6 +28,11 @@
 	}
 </style>
 </head>
+
+<style>
+
+</style>
+
 <body style="background-color: #f7f7f7">
 	<%
 	User user = (User) session.getAttribute("UserObjective");

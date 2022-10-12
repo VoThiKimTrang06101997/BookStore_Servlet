@@ -9,6 +9,7 @@ public class BookAdmin {
 	private String status;
 	private String photo;
 	private String userEmail;
+	
 
 	/* Constructor */
 	public BookAdmin(int bookId, String bookName, String author, String price, String bookCategory, String status,
@@ -23,8 +24,6 @@ public class BookAdmin {
 		this.photo = photo;
 		this.userEmail = userEmail;
 	}
-
-
 
 	public BookAdmin() {
 		// TODO Auto-generated constructor stub

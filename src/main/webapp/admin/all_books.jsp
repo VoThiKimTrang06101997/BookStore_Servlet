@@ -7,10 +7,12 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page isELIgnored="false" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="ISO-8859-1">   
 <title>Admin: All Books</title>
 <%@include file="allCss.jsp"%>
 </head>
@@ -33,6 +35,7 @@
 		<c:remove var="failedMessage" scope="session" />
 	</c:if>
 
+	
 
 	<div class="container">
 		<table class="table table-dark">
@@ -53,10 +56,12 @@
 				<%
 				BookDAOImpl bookDAOImpl = new BookDAOImpl(DBConnect.getConnection());
 				List<BookAdmin> list = bookDAOImpl.getAllBooks();
+			
 				for (BookAdmin bookAdmin : list) {
 				%>
 				<tr>
 					<th><%=bookAdmin.getBookId()%></th>
+					
 					<td><img src="../book_img/<%=bookAdmin.getPhoto()%>"
 						style="width: 60px; height: 60px"></td>
 					<td><%=bookAdmin.getBookName()%></td>
@@ -69,11 +74,13 @@
 						<a href="../delete?id=<%=bookAdmin.getBookId()%>"
 						class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Delete</a></td>
 				</tr>
+				
+				
 				<%
 				}
 				%>
 
-			</tbody>
+			</tbody>  
 		</table>
 	</div>
 

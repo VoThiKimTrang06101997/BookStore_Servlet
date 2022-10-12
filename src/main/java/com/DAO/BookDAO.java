@@ -1,5 +1,6 @@
 package com.DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.entity.BookAdmin;
@@ -8,7 +9,7 @@ public interface BookDAO {
 	public boolean addBooks(BookAdmin bookAdmin);
 	
 	public List<BookAdmin> getAllBooks();
-	
+
 	public BookAdmin getBookById(int id);
 	
 	public boolean updateEditBooks(BookAdmin bookAdmin);
@@ -26,4 +27,9 @@ public interface BookDAO {
 	public List<BookAdmin> getAllNewBooks();
 	
 	public List<BookAdmin> getAllOldBooks();
+	
+	public List<BookAdmin> getBooksByOld(String email, String category);
+	
+	public boolean oldBooksDelete(String email, String category, int bookId);
+	
 }

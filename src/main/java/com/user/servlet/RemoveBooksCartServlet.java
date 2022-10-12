@@ -18,11 +18,11 @@ public class RemoveBooksCartServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int bookId = Integer.parseInt(req.getParameter("bookId"));
 		int userId = Integer.parseInt(req.getParameter("userId"));
-		
+		int cartId = Integer.parseInt(req.getParameter("cartId"));
 		
 		CartDAOImpl cartDAOImpl = new CartDAOImpl(DBConnect.getConnection());
 		
-		boolean f = cartDAOImpl.deleteBooks(bookId, userId);
+		boolean f = cartDAOImpl.deleteBooks(bookId, userId, cartId);
 		
 		HttpSession session = req.getSession();
 		

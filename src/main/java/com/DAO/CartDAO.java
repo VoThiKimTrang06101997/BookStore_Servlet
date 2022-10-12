@@ -9,5 +9,5 @@ public interface CartDAO {
 	
 	public List<Cart> getBookByUser(int userId);
 	
-	public boolean deleteBooks(int bookId, int userId);
+	public boolean deleteBooks(int bookId, int userId, int cartId);
 }

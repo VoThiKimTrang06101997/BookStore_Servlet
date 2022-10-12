@@ -15,7 +15,8 @@ public class BookDAOImpl implements BookDAO{
 		super();
 		this.connection = connection;
 	}
-
+	
+	
 	@Override
 	public boolean addBooks(BookAdmin bookAdmin) {
 		boolean f = false;
@@ -47,6 +48,8 @@ public class BookDAOImpl implements BookDAO{
 	public List<BookAdmin> getAllBooks() {
 		List<BookAdmin> listBookAdmin = new ArrayList<BookAdmin>();
 		BookAdmin bookAdmin = null;
+	
+		
 		
 		try {
 			String query = "SELECT * FROM book_admin";
@@ -55,6 +58,8 @@ public class BookDAOImpl implements BookDAO{
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
 				bookAdmin = new BookAdmin();
+				
+				
 				bookAdmin.setBookId(resultSet.getInt(1));
 				bookAdmin.setBookName(resultSet.getString(2));
 				bookAdmin.setAuthor(resultSet.getString(3));
@@ -381,5 +386,65 @@ public class BookDAOImpl implements BookDAO{
 	}
 
 
+	@Override
+	public List<BookAdmin> getBooksByOld(String email, String category) {
+		List<BookAdmin> list = new ArrayList<BookAdmin>();
+		BookAdmin bookAdmin = null;
+		
+		try {
+			String sql = "SELECT * FROM book_admin WHERE bookCategory=? and email=?";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			
+			preparedStatement.setString(1,category);
+			preparedStatement.setString(2,email);
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				bookAdmin = new BookAdmin();
+				
+				bookAdmin.setBookId(resultSet.getInt(1));
+				bookAdmin.setBookName(resultSet.getString(2));
+				bookAdmin.setAuthor(resultSet.getString(3));
+				bookAdmin.setPrice(resultSet.getString(4));
+				bookAdmin.setBookCategory(resultSet.getString(5));
+				bookAdmin.setStatus(resultSet.getString(6));
+				bookAdmin.setPhoto(resultSet.getString(7));
+				bookAdmin.setUserEmail(resultSet.getString(8));
+				list.add(bookAdmin);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+	@Override
+	public boolean oldBooksDelete(String email, String category, int bookId) {
+		boolean f = false;
+		
+		try {
+			String sql = "DELETE FROM book_admin WHERE bookCategory=? and email=? and bookId = ?";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			
+			preparedStatement.setString(1, category);
+			preparedStatement.setString(2, email);
+			preparedStatement.setInt(3, bookId);
+			
+			int index = preparedStatement.executeUpdate();
+			
+			if(index ==1) {
+				f = true;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return f;
+		
+	}
 
 }

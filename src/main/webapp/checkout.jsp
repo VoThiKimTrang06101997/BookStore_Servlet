@@ -66,7 +66,7 @@
 									<td><%=c.getAuthor()%></td>
 									<td><%=c.getPrice()%></td>
 									<td><a
-										href="remove_books?bookId=<%=c.getBookId()%>&&userId=<%=c.getUserId()%>"
+										href="remove_books?bookId=<%=c.getBookId()%>&&userId=<%=c.getUserId()%>&&cartId=<%=c.getCartId()%>"
 										class="btn btn-sm btn-danger">Remove</a></td>
 								</tr>
 								<%

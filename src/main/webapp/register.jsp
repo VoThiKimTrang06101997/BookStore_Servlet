@@ -73,6 +73,8 @@
 				</div>
 			</div>
 		</div>
+		
+		<a href="login.jsp"> Test</a>
 	</div>
 	
 	<%@ include file="all_component/footer.jsp" %>

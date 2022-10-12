@@ -12,8 +12,9 @@
 <%@include file="all_component/allCss.jsp"%>
 </head>
 <body>
+	
 	<%@include file="all_component/navbar.jsp"%>
-
+	
 	<div class="container_fluid">
 		<h3 class="text-center text-danger mt-2">Old Book</h3>
 		
@@ -50,11 +51,12 @@
 						<p class="text-primary">
 							Categories:
 							<%=bookAdmin.getBookCategory()%></p>
-						<div class="row ml-5">
+						<div class="row text-center ml-5">
 							<a href="" class="btn btn-danger btn-sm ml-2"> <i
 								class="fas fa-cart-plus"></i> Add Cart
-							</a> <a href="" class="btn btn-success btn-sm ml-1">View Details</a>
-							<a href="" class="btn btn-danger btn-sm ml-1"><%=bookAdmin.getPrice()%>
+							</a> <a href="view_books.jsp?bookId=<%=bookAdmin.getBookId() %>"
+								class="btn btn-success btn-sm ml-1">View Details</a> <a href=""
+								class="btn btn-danger btn-sm ml-1"><%=bookAdmin.getPrice()%>
 								<i class="fas fa-dollar-sign"></i></a>
 						</div>
 						<%
@@ -69,5 +71,7 @@
 			%>
 		</div>
 	</div>
+	
+	<%@include file="all_component/footer.jsp"%>
 </body>
 </html>
