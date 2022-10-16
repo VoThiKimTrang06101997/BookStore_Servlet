@@ -1,3 +1,4 @@
+<%@page import="com.entity.User"%>
 <%@page import="com.entity.BookAdmin"%>
 <%@page import="java.util.List"%>
 <%@page import="com.DB.DBConnect"%>
@@ -31,11 +32,16 @@
 
 </head>
 <body>
+
+	<%
+	User user = (User) session.getAttribute("UserObjective");
+	%>
+
 	<%@include file="all_component/navbar.jsp"%>
 
 	<div class="container-fluid">
 		<h3 class="text-center text-danger mt-2">Recent Book</h3>
-		
+
 		<div class="row p-3">
 			<%
 			BookDAOImpl daoImpl = new BookDAOImpl(DBConnect.getConnection());
@@ -58,9 +64,10 @@
 							Categories:
 							<%=admin.getBookCategory()%></p>
 						<div class="row ml-5">
-							<a href="" class="btn btn-success btn-sm ml-5">View Details</a> <a
-								href="" class="btn btn-danger btn-sm ml-1"><%=admin.getPrice()%>
-								<i class="fas fa-dollar-sign"></i></a>
+							<a href="view_books.jsp?bookId=<%=admin.getBookId()%>"
+								class="btn btn-success btn-sm ml-5">View Details</a> <a href=""
+								class="btn btn-danger btn-sm ml-1"><%=admin.getPrice()%> <i
+								class="fas fa-dollar-sign"></i></a>
 						</div>
 						<%
 						} else {
@@ -69,11 +76,29 @@
 							Categories:
 							<%=admin.getBookCategory()%></p>
 						<div class="row ml-5">
-							<a href="" class="btn btn-danger btn-sm ml-2"> <i
+
+							<%
+							if (user == null) {
+							%>
+							<a href="login.jsp" class="btn btn-danger btn-sm ml-2"> <i
 								class="fas fa-cart-plus"></i> Add Cart
-							</a> <a href="" class="btn btn-success btn-sm ml-1">View Details</a>
-							<a href="" class="btn btn-danger btn-sm ml-1"><%=admin.getPrice()%>
-								<i class="fas fa-dollar-sign"></i></a>
+							</a>
+							<%
+							} else {
+							%>
+							<a
+								href="cart?bookId=<%=admin.getBookId()%>&&userId=<%=user.getId()%>"
+								class="btn btn-danger btn-sm ml-2"> <i
+								class="fas fa-cart-plus"></i> Add Cart
+							</a>
+							<%
+							}
+							%>
+
+							<a href="view_books.jsp?bookId=<%=admin.getBookId()%>"
+								class="btn btn-success btn-sm ml-1">View Details</a> <a href=""
+								class="btn btn-danger btn-sm ml-1"><%=admin.getPrice()%> <i
+								class="fas fa-dollar-sign"></i></a>
 						</div>
 						<%
 						}
@@ -86,7 +111,7 @@
 			%>
 		</div>
 	</div>
-	
+
 	<%@include file="all_component/footer.jsp"%>
 </body>
 </html>

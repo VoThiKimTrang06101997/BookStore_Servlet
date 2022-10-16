@@ -1,5 +1,12 @@
+<%@page import="com.entity.Order"%>
+<%@page import="java.util.List"%>
+<%@page import="com.DB.DBConnect"%>
+<%@page import="com.DAO.OrderDAOImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
+	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +16,11 @@
 </head>
 <body>
 	<%@include file="navbar.jsp"%>
+	
+	<c:if test="${empty UserObjective }">
+		<c:redirect url="../login.jsp" />
+	</c:if>
+	
 	<h3 class="text-center text-danger">Hello Admin</h3>
 	<div class="container">
 		<table class="table table-dark">
@@ -25,48 +37,27 @@
 					<th scope="col">Payment Method</th>
 				</tr>
 			</thead>
+			
 			<tbody>
+				<%
+				OrderDAOImpl orderDAOImpl = new OrderDAOImpl(DBConnect.getConnection());
+				List<Order> listOrders = orderDAOImpl.getAllOrder();
+				for (Order order : listOrders) {
+				%>
 				<tr>
-					<th scope="row">1</th>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-					<td>Otto</td>
-				
-
+					<th scope="row"><%=order.getOrderId()%></th>
+					<td><%=order.getUserName()%></td>
+					<td><%=order.getEmail()%></td>
+					<td><%=order.getFullAddress()%></td>
+					<td><%=order.getPhone()%></td>
+					<td><%=order.getBookName()%></td>
+					<td><%=order.getAuthor()%></td>
+					<td><%=order.getPrice()%></td>
+					<td><%=order.getPaymentType()%></td>
 				</tr>
-				
-				<tr>
-					<th scope="row">2</th>
-					<td>Jacob</td>
-					<td>Thornton</td>
-					<td>@fat</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-					<td>Otto</td>
-					
-
-				</tr>
-				
-				<tr>
-					<th scope="row">3</th>
-					<td>Larry</td>
-					<td>the Bird</td>
-					<td>@twitter</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-					<td>Otto</td>
-					
-
-				</tr>
+				<%
+				}
+				%>
 			</tbody>
 		</table>
 	</div>

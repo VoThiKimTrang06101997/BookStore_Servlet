@@ -3,6 +3,7 @@ package com.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.entity.Order;
@@ -66,6 +67,77 @@ public class OrderDAOImpl implements OrderDAO {
 			e.printStackTrace();
 		}
 		return f;
+	}
+
+	@Override
+	public List<Order> getBook(String email) {
+		
+		List<Order> list = new ArrayList<Order>();
+		Order order = null;
+		
+		try {
+			String sql = "SELECT * FROM orders WHERE email=?";
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, email);
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				order = new Order();
+				order.setId(resultSet.getInt(1));
+				order.setOrderId(resultSet.getString(2));
+				order.setUserName(resultSet.getString(3));
+				order.setEmail(resultSet.getString(4));
+				order.setFullAddress(resultSet.getString(5));
+				order.setPhone(resultSet.getString(6));
+				order.setBookName(resultSet.getString(7));
+				order.setAuthor(resultSet.getString(8));
+				order.setPrice(resultSet.getString(9));
+				order.setPaymentType(resultSet.getString(10));
+				
+				list.add(order);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<Order> getAllOrder() {
+		List<Order> list = new ArrayList<Order>();
+		Order order = null;
+		
+		try {
+			String sql = "SELECT * FROM orders";
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				order = new Order();
+				order.setId(resultSet.getInt(1));
+				order.setOrderId(resultSet.getString(2));
+				order.setUserName(resultSet.getString(3));
+				order.setEmail(resultSet.getString(4));
+				order.setFullAddress(resultSet.getString(5));
+				order.setPhone(resultSet.getString(6));
+				order.setBookName(resultSet.getString(7));
+				order.setAuthor(resultSet.getString(8));
+				order.setPrice(resultSet.getString(9));
+				order.setPaymentType(resultSet.getString(10));
+				
+				list.add(order);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+		
 	}
 
 

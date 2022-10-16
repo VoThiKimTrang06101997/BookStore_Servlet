@@ -447,4 +447,41 @@ public class BookDAOImpl implements BookDAO{
 		
 	}
 
+
+	@Override
+	public List<BookAdmin> getBookBySearch(String ch) {
+		List<BookAdmin> list = new ArrayList<BookAdmin>();
+		BookAdmin bookAdmin = null;
+		
+		try {
+			String sql = "SELECT * FROM book_admin WHERE bookname like ? or author like ? or bookCategory like ? and status=? ";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			
+			preparedStatement.setString(1,"%"+ch+"%");
+			preparedStatement.setString(2,"%"+ch+"%");
+			preparedStatement.setString(3,"%"+ch+"%");
+			preparedStatement.setString(4, "Active");
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				bookAdmin = new BookAdmin();
+				
+				bookAdmin.setBookId(resultSet.getInt(1));
+				bookAdmin.setBookName(resultSet.getString(2));
+				bookAdmin.setAuthor(resultSet.getString(3));
+				bookAdmin.setPrice(resultSet.getString(4));
+				bookAdmin.setBookCategory(resultSet.getString(5));
+				bookAdmin.setStatus(resultSet.getString(6));
+				bookAdmin.setPhoto(resultSet.getString(7));
+				bookAdmin.setUserEmail(resultSet.getString(8));
+				list.add(bookAdmin);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 }

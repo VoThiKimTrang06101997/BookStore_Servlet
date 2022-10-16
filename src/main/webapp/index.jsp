@@ -38,8 +38,8 @@
 	User user = (User) session.getAttribute("UserObjective");
 	%>
 
-
 	<%@include file="all_component/navbar.jsp" %>
+	
 	<div class="container-fluid back-img">
 		<h2 class="text-center text-success">Ebook Management System</h2>
 	</div>

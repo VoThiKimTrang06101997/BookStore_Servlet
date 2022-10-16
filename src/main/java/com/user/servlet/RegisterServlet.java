@@ -34,32 +34,31 @@ public class RegisterServlet extends HttpServlet {
 			user.setPassword(password);
 			
 			HttpSession session = req.getSession();
-						
+
 //			if(check != null) {
-//
 //				UserDAOImpl userDAOImpl = new UserDAOImpl(DBConnect.getConnection());
-//				boolean f = userDAOImpl.userRegister(user);
-//				
-//				if(f) {
-//					// System.out.println("User Register Success...");
-//					session.setAttribute("SuccessMessage", "User Registration Successfully..");
-//					resp.sendRedirect("register.jsp");
-//				} else {
-//					// System.out.println("Something wrong on server...");
-//					session.setAttribute("FailedMessage", "Something wrong on server...");
-//					resp.sendRedirect("register.jsp");
+//				boolean f2 = userDAOImpl.checkUser(email);
+//				if(f2) {
+//					boolean f = userDAOImpl.userRegister(user);
+//					if(f) {
+//						// System.out.println("User Register Success...");
+//						session.setAttribute("SuccessMessage", "User Registration Successfully..");
+//						resp.sendRedirect("register.jsp");
+//					} else {
+//						// System.out.println("Something wrong on server...");
+//						session.setAttribute("FailedMessage", "Please Check Agree Terms & Conditions !!");
+//						resp.sendRedirect("register.jsp");
+//					}
 //				}
 //			} else {
-//				// System.out.println("Please Check Agree Terms & Conditions");
-//				session.setAttribute("FailedMessage", "Please Check Agree Terms & Conditions !!");
+//				session.setAttribute("FailedMessage", "User has been alreay Existed. Try another Email Id");
 //				resp.sendRedirect("register.jsp");
 //			}
 			
-
 			UserDAOImpl userDAOImpl = new UserDAOImpl(DBConnect.getConnection());
 			boolean f = userDAOImpl.userRegister(user);
-			
-			if(f) {
+
+			if (f) {
 				// System.out.println("User Register Success...");
 				session.setAttribute("SuccessMessage", "User Registration Successfully..");
 				resp.sendRedirect("register.jsp");

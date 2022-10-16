@@ -32,4 +32,6 @@ public interface BookDAO {
 	
 	public boolean oldBooksDelete(String email, String category, int bookId);
 	
+	public List<BookAdmin> getBookBySearch(String ch);
+	
 }

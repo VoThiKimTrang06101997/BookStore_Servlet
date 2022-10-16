@@ -18,19 +18,18 @@
 	<%@ include file="all_component/navbar.jsp"%>
 
 	<c:if test="${empty UserObjective }">
-		<c:redirect url="login.jsp"></c:redirect>
-		
+		<c:redirect url="login.jsp"></c:redirect>	
 	</c:if>
 
 
 	<c:if test="${ not empty successMessage}">
-		<div class="alert alert-success" role="alert">${successMessage}</div>
+		<div class="alert alert-success text-center" role="alert">${successMessage}</div>
 		<c:remove var="successMessage" scope="session"/>  
 	</c:if>
 	
 	
 	<c:if test="${ not empty failedMessage}">
-		<div class="alert alert-danger text-danger" role="alert">${failedMessage }</div>
+		<div class="alert alert-danger text-danger text-center" role="alert">${failedMessage }</div>
 		<c:remove var="failedMessage" scope="session"/>  
 	</c:if>
 	
@@ -97,12 +96,13 @@
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">Name</label> <input type="text"
 										class="form-control" id="inputEmail4" placeholder="Name"
-										name="name" value="${UserObjective.name }" >
+										name="name" value="${UserObjective.name }" required="required" >
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">Email</label> <input
 										type="email" class="form-control" id="inputPassword4"
-										name="email" placeholder="Email" value="${UserObjective.email }" >
+										name="email" placeholder="Email" value="${UserObjective.email }" 
+										required="required">
 								</div>
 							</div>
 							
@@ -110,12 +110,14 @@
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">Phone Number</label> <input type="number"
 										class="form-control" id="inputEmail4" placeholder="Phone Number"
-										name="phone_number" value="${UserObjective.phone_number }">
+										name="phone_number" value="${UserObjective.phone_number }"
+										required="required">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">Address</label> <input
 										type="text" class="form-control" id="inputPassword4"
-										name="address" placeholder="Address">
+										name="address" placeholder="Address"
+										required="required">
 								</div>
 							</div>
 							
@@ -123,24 +125,28 @@
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">Landmark</label> <input type="text"
 										class="form-control" id="inputEmail4" placeholder="Landmark" 
-										name="landmark">
+										name="landmark"
+										required="required">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">City</label> <input
 										type="text" class="form-control" id="inputPassword4"
-										placeholder="City" name="city">
+										placeholder="City" name="city"
+										required="required">
 								</div>
 							</div>
 							
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">State</label> <input type="text"
-										class="form-control" id="inputEmail4" placeholder="State" name="state">
+										class="form-control" id="inputEmail4" placeholder="State" name="state"
+										required="required">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">Pin Code</label> <input
 										type="text" class="form-control" id="inputPassword4"
-										placeholder="Pin Code" name="pin_code">
+										placeholder="Pin Code" name="pin_code"
+										required="required">
 								</div>
 
 								<div class="form-group">

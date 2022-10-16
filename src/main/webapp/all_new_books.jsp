@@ -37,7 +37,8 @@
 	animation: fadeIn 0.5, fadeOut 0.5s 2.5s;
 }
 
-@keyframes fadeIn {
+@
+keyframes fadeIn {
 	from {bottom: 0;
 	opacity: 0;
 }
@@ -48,7 +49,8 @@ to {
 }
 
 }
-@keyframes fadeOut {
+@
+keyframes fadeOut {
 	from {bottom: 30px;
 	opacity: 1;
 }
@@ -68,7 +70,7 @@ to {
 
 	<c:if test="${not empty addCart }">
 		<div id="toast">${addCart }</div>
-		
+
 		<script type="text/javascript">
 			showToast();
 			function showToast(content) {
@@ -82,21 +84,21 @@ to {
 
 		<c:remove var="addCart" scope="session" />
 	</c:if>
-	
+
 	<%@include file="all_component/navbar.jsp"%>
-	
-	
+
+
 	<div class="container-fluid">
 		<h3 class="text-center text-danger mt-2">New Book</h3>
 		<div class="row p-3">
-		
+
 			<%
 			BookDAOImpl bookDAOImpl = new BookDAOImpl(DBConnect.getConnection());
 			List<BookAdmin> listBooks = bookDAOImpl.getNewBooks();
 
 			for (BookAdmin bookAdmin : listBooks) {
 			%>
-			
+
 			<div class="col-md-3 mt-3">
 				<div class="card crd-ho mt-2">
 					<div class="card-body text-center">
@@ -109,10 +111,28 @@ to {
 							Categories:
 							<%=bookAdmin.getBookCategory()%></p>
 						<div class="row ml-5">
-							<a href="cart?bookId=<%=bookAdmin.getBookId()%>&&userId=<%=user.getId() %>" class="btn btn-danger btn-sm ml-2"> <i
+
+							<%
+							if (user == null) {
+							%>
+							<a href="login.jsp" class="btn btn-danger btn-sm ml-2"> <i
 								class="fas fa-cart-plus"></i> Add Cart
-							</a> <a href="view_books.jsp?bookId=<%=bookAdmin.getBookId()%>" class="btn btn-success btn-sm ml-1">View Details</a>
-							<a href="" class="btn btn-danger btn-sm ml-1"><%=bookAdmin.getPrice()%>
+							</a>
+							<%
+							} else {
+							%>
+							<a
+								href="cart?bookId=<%=bookAdmin.getBookId()%>&&userId=<%=user.getId()%>"
+								class="btn btn-danger btn-sm ml-2"> <i
+								class="fas fa-cart-plus"></i> Add Cart
+							</a>
+							<%
+							}
+							%>
+
+							<a href="view_books.jsp?bookId=<%=bookAdmin.getBookId()%>"
+								class="btn btn-success btn-sm ml-1">View Details</a> <a href=""
+								class="btn btn-danger btn-sm ml-1"><%=bookAdmin.getPrice()%>
 								<i class="fas fa-dollar-sign"></i></a>
 						</div>
 					</div>
