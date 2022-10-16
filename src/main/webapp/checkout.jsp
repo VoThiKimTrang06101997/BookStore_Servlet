@@ -30,7 +30,7 @@
 	
 	
 	<c:if test="${ not empty failedMessage}">
-		<div class="alert alert-danger" role="alert">${failedMessage }</div>
+		<div class="alert alert-danger text-danger" role="alert">${failedMessage }</div>
 		<c:remove var="failedMessage" scope="session"/>  
 	</c:if>
 	
@@ -91,17 +91,18 @@
 				<div class="card">
 					<div class="card-body">
 					<h3 class="text-center text-success">Your Details For Orders</h3>
-						<form>
+						<form action="order" method="post">
+							<input type="text" value="${UserObjective.id }" name="id" >
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">Name</label> <input type="text"
 										class="form-control" id="inputEmail4" placeholder="Name"
-										value="<%= user.getName()%>" readonly = "readonly">
+										name="name" value="${UserObjective.name }" >
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">Email</label> <input
 										type="email" class="form-control" id="inputPassword4"
-										placeholder="Email" value="<%= user.getEmail()%>" readonly = "readonly">
+										name="email" placeholder="Email" value="${UserObjective.email }" >
 								</div>
 							</div>
 							
@@ -109,52 +110,54 @@
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">Phone Number</label> <input type="number"
 										class="form-control" id="inputEmail4" placeholder="Phone Number"
-										value="<%= user.getPhone_number()%>">
+										name="phone_number" value="${UserObjective.phone_number }">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">Address</label> <input
 										type="text" class="form-control" id="inputPassword4"
-										placeholder="Address">
+										name="address" placeholder="Address">
 								</div>
 							</div>
 							
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">Landmark</label> <input type="text"
-										class="form-control" id="inputEmail4" placeholder="Landmark">
+										class="form-control" id="inputEmail4" placeholder="Landmark" 
+										name="landmark">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">City</label> <input
 										type="text" class="form-control" id="inputPassword4"
-										placeholder="City">
+										placeholder="City" name="city">
 								</div>
 							</div>
 							
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">State</label> <input type="text"
-										class="form-control" id="inputEmail4" placeholder="State">
+										class="form-control" id="inputEmail4" placeholder="State" name="state">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">Pin Code</label> <input
 										type="text" class="form-control" id="inputPassword4"
-										placeholder="Pin Code">
+										placeholder="Pin Code" name="pin_code">
 								</div>
 
 								<div class="form-group">
-									<label>Payment Mode</label> <select class="form-control">
-										<option>--Select--</option>
-										<option>Cash On Delivery</option>
-
+									<label>Payment Mode</label> <select class="form-control" name="payment_type">
+										<option value="no_select">--Select--</option>
+										<option value="COD">Cash On Delivery</option>
 									</select>
 								</div>
 							</div>
+
+							<div class="text-center">
+								<button class="btn btn-warning">Order Now</button>
+								<a href="index.jsp" class="btn btn-success">Continue
+									Shopping</a>
+							</div>
 						</form>
 
-						<div class="text-center">
-							<button class="btn btn-warning">Order Now</button>
-							<a href="index.jsp" class="btn btn-success">Continue Shopping</a>
-						</div>
 					</div>
 				</div>
 			</div>

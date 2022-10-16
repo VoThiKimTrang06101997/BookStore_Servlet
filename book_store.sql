@@ -39,7 +39,17 @@ create table if not exists cart(
     primary key (cartId)
 );
 
-
-
-
+create table if not exists orders (
+	id int auto_increment not null,
+    orders_id varchar(255) null,
+    user_name varchar(255) null,
+    email varchar(255) null,
+    address varchar(255) null,
+    phone varchar(255) null,
+	book_name varchar(255) null,
+    author varchar(255) null,
+    price varchar(255) null,
+    payment varchar(255) null,
+	primary key (id)
+);
 
